@@ -45,10 +45,10 @@ namespace _3D
             Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             var offset = ProcessInputVector(-axes);
             var tp = transform.position;
-            var newPos = tp + (offset * (MovementSpeed * Time.fixedTime));
+            var newPos = tp + (offset * (MovementSpeed * Time.fixedDeltaTime));
             rb.MovePosition(newPos);
             var direction = newPos - tp;
-            // transform.LookAt(direction);
+            transform.LookAt(tp+direction);
         }
     }
 }
