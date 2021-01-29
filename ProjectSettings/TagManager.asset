@@ -44,3 +44,9 @@ TagManager:
   - name: Upper
     uniqueID: 3029859695
     locked: 0
+  - name: Collisions
+    uniqueID: 113009047
+    locked: 0
+  - name: Characters
+    uniqueID: 1534088489
+    locked: 0
