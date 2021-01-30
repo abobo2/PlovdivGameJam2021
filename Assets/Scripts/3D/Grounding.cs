@@ -45,10 +45,10 @@ namespace _3D
                         var edgeOffset = new Vector3(bounds.extents.x * i, 0, bounds.extents.y * j);
                         var worldSpaceEdge = transform.position + edgeOffset;// - bottom;
                         var ray = new Ray(worldSpaceEdge, -transform.up * 5.0f);
-                        Debug.DrawRay(ray.origin, ray.direction, Color.cyan, 0.5f);
+                        //Debug.DrawRay(ray.origin, ray.direction, Color.cyan, 0.5f);
                         if (!Physics.Raycast(ray))
                         {
-                            Debug.Log("grounding lost!" + i.ToString() + j.ToString());
+                            //Debug.Log("grounding lost!" + i.ToString() + j.ToString());
                             groundCount--;
                             IsFullyGrounded = false;
                         }

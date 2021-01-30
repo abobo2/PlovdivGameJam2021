@@ -47,6 +47,7 @@ namespace _3D
         {
             Move();
             Dash();
+            Attack();
         }
 
         public float MoveGracePeriod = 0.2f;
@@ -131,9 +132,25 @@ namespace _3D
 
         public void Attack()
         {
+            var mouseRay = cam.ScreenPointToRay(Input.mousePosition);
+            Plane p = new Plane(Vector3.up, transform.position);
+
+            float enterPoint;
+            p.Raycast(mouseRay, out enterPoint);
+
+            if(enterPoint > Single.Epsilon)
+            {
+                var hitPoint = mouseRay.GetPoint(enterPoint);
+                transform.LookAt(hitPoint); 
+            }
+           
             if (Input.GetButton("Fire1"))
             {
-                
+                var weapon = this.GetComponent<Weapon>();
+                if (weapon != null)
+                {
+                    weapon.OnFire();
+                }
             }
         }
 
