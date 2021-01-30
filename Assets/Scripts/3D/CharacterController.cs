@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace _3D
@@ -35,9 +36,10 @@ namespace _3D
             return newDeltaVector;
         }
 
-        public void FixedUpdate()
+        public void Update()
         {
             Move();
+            Dash();
         }
 
         public void Move()
@@ -45,10 +47,42 @@ namespace _3D
             Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             var offset = ProcessInputVector(-axes);
             var tp = transform.position;
-            var newPos = tp + (offset * (MovementSpeed * Time.fixedDeltaTime));
+            var newPos = tp + (offset * (MovementSpeed * Time.deltaTime));
             rb.MovePosition(newPos);
             var direction = newPos - tp;
             transform.LookAt(tp+direction);
+        }
+
+
+        private bool IsDashing = false;
+
+        public float DashTime = 0.2f;
+
+        public float DashDistance = 20;
+        public void Dash()
+        {
+            // cam.jit
+            Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            if (axes.magnitude > Single.Epsilon &&  Input.GetButtonDown("Dash") && !IsDashing)
+            {
+                StartCoroutine(ExecDash());
+            }
+        }
+
+        IEnumerator ExecDash()
+        {
+            IsDashing = true;
+            float currentDashTime = 0;
+            Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            var processedVector = ProcessInputVector(-axes);
+            while (currentDashTime < DashTime)
+            {
+                float portionOfDash = Time.deltaTime / DashTime;
+                currentDashTime += Time.deltaTime;
+                rb.MovePosition(transform.position +  processedVector * (DashDistance * portionOfDash) );
+                yield return null;
+            }
+            IsDashing = false;
         }
     }
 }
