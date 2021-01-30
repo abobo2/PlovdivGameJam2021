@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 namespace _3D
 {
@@ -83,6 +84,7 @@ namespace _3D
             IsDashing = true;
             float currentDashTime = 0;
             Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            rb.constraints = rb.constraints | RigidbodyConstraints.FreezePositionY;
             var processedVector = ProcessInputVector(-axes).normalized;
             while (currentDashTime < DashTime)
             {
@@ -91,6 +93,7 @@ namespace _3D
                 rb.MovePosition(transform.position +  processedVector * (DashDistance * portionOfDash) );
                 yield return null;
             }
+            rb.constraints = rb.constraints ^ RigidbodyConstraints.FreezePositionY;
             IsDashing = false;
         }
     }

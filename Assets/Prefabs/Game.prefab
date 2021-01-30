@@ -578,6 +578,7 @@ GameObject:
   - component: {fileID: 6801258408473119229}
   - component: {fileID: 6801258408473119230}
   - component: {fileID: 6801258408473119231}
+  - component: {fileID: 5439361549472950966}
   m_Layer: 0
   m_Name: Wisp_v3
   m_TagString: Untagged
@@ -660,7 +661,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!136 &6801258408473119230
 CapsuleCollider:
@@ -688,8 +689,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcad2f62db004f10857b8ba33492adac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  focus: {fileID: 0}
+  movementMask:
+    serializedVersion: 2
+    m_Bits: 0
+  interactionMask:
+    serializedVersion: 2
+    m_Bits: 0
   cam: {fileID: 6801258407045431453}
-  MovementSpeed: 20
+  MovementSpeed: 10
+  DashTime: 0.2
+  DashDistance: 10
+--- !u!114 &5439361549472950966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801258408473119225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec4c79a6c35745b6b23172d98db00bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResetThreshold: 100
+  SafeDistance: 1.5
+  StartPosition: {x: 0, y: 0, z: 0}
+  SafePosition: {x: 0, y: 0, z: 0}
+  ResetTime: 0.75
+  IsGrounded: 0
+  ResetInProgress: 0
 --- !u!1 &6801258408487353049
 GameObject:
   m_ObjectHideFlags: 0
