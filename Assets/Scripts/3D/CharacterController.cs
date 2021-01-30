@@ -49,9 +49,36 @@ namespace _3D
             Dash();
         }
 
+        public float MoveGracePeriod = 0.2f;
+
+        public float MoveGracePeriodCurrent = 0.2f;
+
         public void Move()
         {
             if (IsDashing) return;
+
+            var grounding = gameObject.GetComponent<Grounding>();
+            bool shouldMove= true;
+            if (grounding != null)
+            {
+                if (!grounding.IsGrounded)
+                {
+                    if (MoveGracePeriodCurrent <= 0)
+                    {
+                        shouldMove= false;
+                    }
+                    else
+                    {
+                        MoveGracePeriodCurrent -= Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    MoveGracePeriodCurrent = MoveGracePeriod;
+                }
+            }
+            if (!shouldMove) return;
+
             Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             var offset = ProcessInputVector(-axes).normalized;
             var tp = transform.position;
@@ -91,10 +118,22 @@ namespace _3D
                         DashGracePeriodCurrent -= Time.deltaTime;
                     }
                 }
+                else
+                {
+                    DashGracePeriodCurrent = DashGracePeriod;
+                }
             }
             if (axes.magnitude > Single.Epsilon &&  Input.GetButtonDown("Dash") && shouldDash)
             {
                 StartCoroutine(ExecDash());
+            }
+        }
+
+        public void Attack()
+        {
+            if (Input.GetButton("Fire1"))
+            {
+                
             }
         }
 
