@@ -16,6 +16,8 @@ namespace _3D
 
         public float ResetTime = 0.75f;
 
+        public bool IsFullyGrounded = false;
+
         public bool IsGrounded = false;
 
         public bool ResetInProgress = false;
@@ -30,28 +32,33 @@ namespace _3D
         public void Update()
         {
             var bounds = transform.GetComponent<Collider>().bounds;
-            bool isFullyGrounded = true;
-            
+            bool IsFullyGrounded = true;
+            int groundCount = 0;
             for (int i = -1; i <= 1; i++)
             {
                 for (int j = -1; j <= 1; j++)
                 {
                     if (Mathf.Abs(i) + Mathf.Abs(j) == 2)
                     {
+                        groundCount++;
                         var bottom = new Vector3(0,bounds.extents.y,0);
-                        var edgeOffset = new Vector3(bounds.extents.x * i,0, bounds.extents.y * j);
-                        var worldSpaceEdge = transform.position + edgeOffset - bottom;
+                        var edgeOffset = new Vector3(bounds.extents.x * i, 0, bounds.extents.y * j);
+                        var worldSpaceEdge = transform.position + edgeOffset;// - bottom;
                         var ray = new Ray(worldSpaceEdge, -transform.up * 5.0f);
-                        // Debug.DrawRay(ray.origin, ray.direction, Color.cyan, 0.5f);
+                        Debug.DrawRay(ray.origin, ray.direction, Color.cyan, 0.5f);
                         if (!Physics.Raycast(ray))
                         {
-                            isFullyGrounded = false;
+                            Debug.Log("grounding lost!" + i.ToString() + j.ToString());
+                            groundCount--;
+                            IsFullyGrounded = false;
                         }
                     }
                 }
             }
-            IsGrounded = isFullyGrounded;
-            if (isFullyGrounded)
+
+            IsGrounded = groundCount > 0;
+
+            if (IsFullyGrounded)
             {
                 SafePosition = transform.position;
             }

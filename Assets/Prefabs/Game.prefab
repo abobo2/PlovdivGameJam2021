@@ -28,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517303276141043781}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.4912376, y: 3.4449716, z: -10.767412}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6801258408473119224}
   m_Father: {fileID: 6801258408487353048}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5992112953397848951
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -63,9 +63,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.1842254
-  m_Height: 2.503859
+  m_Height: 2.78
   m_Direction: 1
-  m_Center: {x: 0, y: -0.013374567, z: -0.24543414}
+  m_Center: {x: -6.488357e-17, y: 0.79326653, z: -0.24543417}
 --- !u!114 &3814837114887471174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +89,8 @@ MonoBehaviour:
   MovementSpeed: 20
   DashTime: 0.1
   DashDistance: 10
+  DashGracePeriod: 0.2
+  DashGracePeriodCurrent: 0.2
 --- !u!114 &63371646707293109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +108,7 @@ MonoBehaviour:
   StartPosition: {x: 0, y: 0, z: 0}
   SafePosition: {x: 0, y: 0, z: 0}
   ResetTime: 0.75
+  IsFullyGrounded: 0
   IsGrounded: 0
   ResetInProgress: 0
 --- !u!95 &6821905690941744619
@@ -4982,7 +4985,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5539,7 +5542,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6801258408473119225}
-  m_Mesh: {fileID: 1138804994664332544, guid: 2f7dc278066d8cd478c3eb445ccc94f8, type: 3}
+  m_Mesh: {fileID: 1138804994664332544, guid: 4237e4641f587194c860f65a50acf08a, type: 3}
 --- !u!23 &6801258408473119228
 MeshRenderer:
   m_ObjectHideFlags: 0
