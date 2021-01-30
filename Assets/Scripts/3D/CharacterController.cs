@@ -67,6 +67,11 @@ namespace _3D
         public float DashTime = 0.2f;
 
         public float DashDistance = 20;
+
+        public float DashGracePeriod = 0.2f;
+
+        public float DashGracePeriodCurrent = 0.2f;
+
         public void Dash()
         {
             // cam.jit
@@ -75,9 +80,18 @@ namespace _3D
             bool shouldDash = !IsDashing;
             if(grounding != null)
             {
-                shouldDash &= grounding.IsGrounded;
+                if (!grounding.IsGrounded)
+                {
+                    if(DashGracePeriodCurrent <= 0)
+                    {
+                        shouldDash = false;
+                    }
+                    else
+                    {
+                        DashGracePeriodCurrent -= Time.deltaTime;
+                    }
+                }
             }
-            if (grounding != null)
             if (axes.magnitude > Single.Epsilon &&  Input.GetButtonDown("Dash") && shouldDash)
             {
                 StartCoroutine(ExecDash());
