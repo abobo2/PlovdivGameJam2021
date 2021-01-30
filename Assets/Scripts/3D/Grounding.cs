@@ -31,7 +31,6 @@ namespace _3D
         {
             var bounds = transform.GetComponent<Collider>().bounds;
             bool isFullyGrounded = true;
-            int tests = 0;
             
             for (int i = -1; i <= 1; i++)
             {
@@ -39,7 +38,6 @@ namespace _3D
                 {
                     if (Mathf.Abs(i) + Mathf.Abs(j) == 2)
                     {
-                        tests++;
                         var bottom = new Vector3(0,bounds.extents.y,0);
                         var edgeOffset = new Vector3(bounds.extents.x * i,0, bounds.extents.y * j);
                         var worldSpaceEdge = transform.position + edgeOffset - bottom;
