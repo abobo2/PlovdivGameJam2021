@@ -24,6 +24,7 @@ public class audiomaneger : MonoBehaviour
     private void Start()
     {
         Play("prototype3.0");
+        
     }
 
 
