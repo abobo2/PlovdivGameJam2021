@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using System;
 
 public class audiomaneger : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class audiomaneger : MonoBehaviour
 
     public void Play(string name)
     {
-       
+        sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.Play();
     }
 }
