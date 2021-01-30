@@ -20712,17 +20712,6 @@ PrefabInstance:
       propertyPath: MovementSpeed
       value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 4725757687106707654, guid: 18993548ecdc2454da87fc0b0d28bcf8,
-        type: 3}
-      propertyPath: ProjectilePrefab
-      value: 
-      objectReference: {fileID: 63171612485764099, guid: d992e5e4ea4d7f844bffa862b62515da,
-        type: 3}
-    - target: {fileID: 4725757687106707654, guid: 18993548ecdc2454da87fc0b0d28bcf8,
-        type: 3}
-      propertyPath: Cooldown
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 6801258407045431442, guid: 18993548ecdc2454da87fc0b0d28bcf8,
         type: 3}
       propertyPath: weight

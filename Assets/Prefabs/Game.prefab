@@ -147,9 +147,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   Knockback: 3
-  Cooldown: 0.6
+  Cooldown: 0.1
   CurrentCd: 0
-  ProjectilePrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 63171612485764099, guid: d992e5e4ea4d7f844bffa862b62515da,
+    type: 3}
   EnemyTags:
   - Enemy
 --- !u!1 &4229435949642029080
