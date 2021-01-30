@@ -22,12 +22,11 @@ public class Projectile : MonoBehaviour
         isShot = true;
     }
 
-
     public void Update()
     {
         if (isShot)
         {
-            transform.Translate(this.Direction * Speed * Time.deltaTime);
+            transform.position += (Direction * (Speed * Time.deltaTime));
             if (ShotTime + Duration < Time.time)
             {
                 Die();

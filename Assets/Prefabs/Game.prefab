@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3814837114887471174}
   - component: {fileID: 63371646707293109}
   - component: {fileID: 6821905690941744619}
+  - component: {fileID: 4725757687106707654}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -132,6 +133,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4725757687106707654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517303276141043781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c11ca0144f86a446882dd750a2e0595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  Knockback: 3
+  Cooldown: 0.6
+  CurrentCd: 0
+  ProjectilePrefab: {fileID: 0}
+  EnemyTags:
+  - Enemy
 --- !u!1 &4229435949642029080
 GameObject:
   m_ObjectHideFlags: 0
@@ -5516,6 +5536,7 @@ GameObject:
   - component: {fileID: 6801258408473119224}
   - component: {fileID: 6801258408473119219}
   - component: {fileID: 6801258408473119228}
+  - component: {fileID: 2349831946348929766}
   m_Layer: 0
   m_Name: Wisp_v3
   m_TagString: Untagged
@@ -5544,7 +5565,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6801258408473119225}
-  m_Mesh: {fileID: 1138804994664332544, guid: 4237e4641f587194c860f65a50acf08a, type: 3}
+  m_Mesh: {fileID: 1138804994664332544, guid: 9e486aeb28a1ca14abf97c1eca1922cb, type: 3}
 --- !u!23 &6801258408473119228
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5584,6 +5605,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!95 &2349831946348929766
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801258408473119225}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ecead434d7936d47b8139099947d083, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6801258408487353049
 GameObject:
   m_ObjectHideFlags: 0

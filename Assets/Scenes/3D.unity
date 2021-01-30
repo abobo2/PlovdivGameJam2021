@@ -933,6 +933,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChaseDistance: 15
   MovementSpeed: 8
+  MinChaseDistance: 2
+--- !u!114 &65653420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65653416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae05b2f9ec47734d859503157dcedb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 1
+  DieBehaviour: 1
 --- !u!4 &65814787 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d98d26c20c12ad14a9f11e36c1c4932e,
@@ -20687,6 +20702,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3814837114887471174, guid: 18993548ecdc2454da87fc0b0d28bcf8,
+        type: 3}
+      propertyPath: DashDistance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814837114887471174, guid: 18993548ecdc2454da87fc0b0d28bcf8,
+        type: 3}
+      propertyPath: MovementSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725757687106707654, guid: 18993548ecdc2454da87fc0b0d28bcf8,
+        type: 3}
+      propertyPath: ProjectilePrefab
+      value: 
+      objectReference: {fileID: 63171612485764099, guid: d992e5e4ea4d7f844bffa862b62515da,
+        type: 3}
+    - target: {fileID: 4725757687106707654, guid: 18993548ecdc2454da87fc0b0d28bcf8,
+        type: 3}
+      propertyPath: Cooldown
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6801258407045431442, guid: 18993548ecdc2454da87fc0b0d28bcf8,
         type: 3}
       propertyPath: weight
@@ -20877,7 +20913,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -620.149
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2349831946348929766, guid: 18993548ecdc2454da87fc0b0d28bcf8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 18993548ecdc2454da87fc0b0d28bcf8, type: 3}
 --- !u!23 &7184049875486991677
 MeshRenderer:
@@ -20956,6 +20993,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: character_evil
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663025712960182106, guid: 2c19545e491b001488ebf662995b554e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7663025712960182107, guid: 2c19545e491b001488ebf662995b554e,
         type: 3}

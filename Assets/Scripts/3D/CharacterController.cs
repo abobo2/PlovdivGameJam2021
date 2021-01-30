@@ -144,7 +144,7 @@ namespace _3D
                 transform.LookAt(hitPoint); 
             }
            
-            if (Input.GetButton("Fire1"))
+            if (Input.GetButtonDown("Fire1"))
             {
                 var weapon = this.GetComponent<Weapon>();
                 if (weapon != null)
