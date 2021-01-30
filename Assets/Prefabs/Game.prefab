@@ -5038,7 +5038,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 6801258407045431447}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1537
   stopNaNPropagation: 0
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
@@ -5077,7 +5077,7 @@ MonoBehaviour:
       colorBlindnessType: 0
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
+  m_ShowToolkit: 1
   m_ShowCustomSorter: 0
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
