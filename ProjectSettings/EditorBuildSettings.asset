@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WhiteBox_3D.unity
     guid: 062983e1d8f23bc47aeb6505d90c30d5
+  - enabled: 1
+    path: Assets/Scenes/3D.unity
+    guid: 393bbb937cad6fa4887ca31e6077e695
   m_configObjects: {}
