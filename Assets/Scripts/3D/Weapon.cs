@@ -34,7 +34,8 @@ public class Weapon : MonoBehaviour
         {
             var otherRB = col.transform.GetComponent<Rigidbody>();
             var dir = (col.transform.position - transform.position);
-            otherRB.AddExplosionForce(Knockback, col.transform.position - dir, 10);
+            // otherRB.AddExplosionForce(Knockback, col.transform.position - dir, 10);
+            otherRB.AddForce(dir * Knockback, ForceMode.Impulse);
             otherRB.GetComponent<Health>().OnHit(Damage);
         }
     }

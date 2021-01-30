@@ -39,7 +39,7 @@ namespace _3D
             var curPos2d = new Vector3(curPos.x, 0, curPos.z);
 
             var distance = Vector3.Distance(curPos2d, tarPos2d);
-            if ( distance < ChaseDistance && distance > MinChaseDistance) // prevent humping
+            if ( distance < ChaseDistance && distance > MinChaseDistance &&rb.velocity.magnitude < 1) // prevent humping
             {
                 var dir = (tarPos2d - curPos2d).normalized;
                 var moveVec = dir * (MovementSpeed * Time.deltaTime);

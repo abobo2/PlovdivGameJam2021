@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 100
-  Duration: 0.1
+  Duration: 0.5
   Direction: {x: 0, y: 0, z: 0}
   ShotTime: 0
 --- !u!23 &63171612485765117
