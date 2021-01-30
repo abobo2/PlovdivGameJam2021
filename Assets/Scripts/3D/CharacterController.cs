@@ -15,8 +15,6 @@ namespace _3D
         public Camera cam;
 
 
-
-
         public Rigidbody rb => GetComponent<Rigidbody>();
 
         public float MovementSpeed = 20;
@@ -73,7 +71,14 @@ namespace _3D
         {
             // cam.jit
             Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            if (axes.magnitude > Single.Epsilon &&  Input.GetButtonDown("Dash") && !IsDashing)
+            var grounding = gameObject.GetComponent<Grounding>();
+            bool shouldDash = !IsDashing;
+            if(grounding != null)
+            {
+                shouldDash &= grounding.IsGrounded;
+            }
+            if (grounding != null)
+            if (axes.magnitude > Single.Epsilon &&  Input.GetButtonDown("Dash") && shouldDash)
             {
                 StartCoroutine(ExecDash());
             }
