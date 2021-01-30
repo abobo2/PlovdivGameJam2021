@@ -20122,6 +20122,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6801258408473119231, guid: 18993548ecdc2454da87fc0b0d28bcf8,
+        type: 3}
+      propertyPath: DashTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801258408473119231, guid: 18993548ecdc2454da87fc0b0d28bcf8,
+        type: 3}
+      propertyPath: MovementSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801258408473119231, guid: 18993548ecdc2454da87fc0b0d28bcf8,
+        type: 3}
+      propertyPath: DashDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6801258408487353048, guid: 18993548ecdc2454da87fc0b0d28bcf8,
         type: 3}
       propertyPath: m_LocalPosition.x

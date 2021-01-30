@@ -52,16 +52,14 @@ namespace _3D
 
         public void Move()
         {
+            if (IsDashing) return;
             Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            var offset = ProcessInputVector(-axes);
+            var offset = ProcessInputVector(-axes).normalized;
             var tp = transform.position;
             var newPos = tp + (offset * (MovementSpeed * Time.deltaTime));
             rb.MovePosition(newPos);
             var direction = newPos - tp;
             transform.LookAt(tp + direction);
-
-
-
         }
 
 
@@ -85,7 +83,7 @@ namespace _3D
             IsDashing = true;
             float currentDashTime = 0;
             Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            var processedVector = ProcessInputVector(-axes);
+            var processedVector = ProcessInputVector(-axes).normalized;
             while (currentDashTime < DashTime)
             {
                 float portionOfDash = Time.deltaTime / DashTime;
