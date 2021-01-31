@@ -32,6 +32,10 @@ public class Health : MonoBehaviour
     private void Update()
     {
         InvulnerabilityDurationCurrent -= Time.deltaTime;
+        if (this.CompareTag("Enemy") && transform.position.y < -100)
+        {
+            Die();
+        }
         if (Value <= 0)
         {
             Die();
