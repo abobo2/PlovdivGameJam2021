@@ -20688,16 +20688,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3814837114887471174, guid: 18993548ecdc2454da87fc0b0d28bcf8,
-        type: 3}
-      propertyPath: DashDistance
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 3814837114887471174, guid: 18993548ecdc2454da87fc0b0d28bcf8,
-        type: 3}
-      propertyPath: MovementSpeed
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 4725757687106707654, guid: 18993548ecdc2454da87fc0b0d28bcf8,
         type: 3}
       propertyPath: Damage

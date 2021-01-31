@@ -87,11 +87,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   cam: {fileID: 6801258407045431453}
-  MovementSpeed: 20
+  MovementSpeed: 15
   MoveGracePeriod: 0.2
   MoveGracePeriodCurrent: 0.2
   DashTime: 0.1
-  DashDistance: 10
+  DashDistance: 15
   DashGracePeriod: 0.2
   DashGracePeriodCurrent: 0.2
 --- !u!114 &63371646707293109
@@ -5023,8 +5023,8 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
-  orthographic: 1
+  field of view: 9
+  orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:

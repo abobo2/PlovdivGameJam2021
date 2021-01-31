@@ -1,6 +1,7 @@
 ﻿using System;
 using _3D;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -47,5 +48,6 @@ public class Health : MonoBehaviour
 public enum HealthDieBehaviour
 {
     Respawn,
-    Destroy
+    Destroy,
+    ChangeScene,
 }
