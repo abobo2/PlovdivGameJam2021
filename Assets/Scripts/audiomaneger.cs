@@ -21,12 +21,11 @@ public class audiomaneger : MonoBehaviour
         }
     }
 
+
     private void Start()
     {
-        Play("prototype3.0");
-        
+        Play("Bosssoundv.2");
     }
-
 
     public void Play(string name)
     {
