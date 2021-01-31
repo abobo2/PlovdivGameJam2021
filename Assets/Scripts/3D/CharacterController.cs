@@ -11,13 +11,15 @@ namespace _3D
         public Interactable focus;
         public LayerMask movementMask;
         public LayerMask interactionMask;
+        public ParticleSystem DashParticles;
 
         public Camera cam;
-
 
         public Rigidbody rb => GetComponent<Rigidbody>();
 
         public float MovementSpeed = 20;
+
+        public Vector3 AppliedVelocity;
 
         public Vector3 ProcessInputVector(Vector2 input)
         {
@@ -43,11 +45,20 @@ namespace _3D
             return newDeltaVector;
         }
 
+        public void GatherInput()
+        {
+            
+        }
+
         public void Update()
+        {
+            Attack();
+        }
+        
+        public void FixedUpdate()
         {
             Move();
             Dash();
-            Attack();
         }
 
         public float MoveGracePeriod = 0.2f;
@@ -70,7 +81,7 @@ namespace _3D
                     }
                     else
                     {
-                        MoveGracePeriodCurrent -= Time.deltaTime;
+                        MoveGracePeriodCurrent -= Time.fixedDeltaTime;
                     }
                 }
                 else
@@ -83,15 +94,30 @@ namespace _3D
             Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             var offset = ProcessInputVector(-axes).normalized;
             var tp = transform.position;
-            var newPos = tp + (offset * (MovementSpeed * Time.deltaTime));
-            if (rb.velocity.magnitude < 3)
-            {
+            var newPos = tp + (offset * (MovementSpeed * Time.fixedDeltaTime)) + (rb.velocity * Time.fixedDeltaTime);
+
+            // ConstantForce f = GetComponent<ConstantForce>();
+            // if (f == null)
+            // {
+            //     gameObject.AddComponent<ConstantForce>();
+            //     f = GetComponent<ConstantForce>();
+            // }
+            // f.force = offset * MovementSpeed;
+            
+            // rb.AddForce(f);
+            // var newAppVelocity = (offset * MovementSpeed) ;
+            // rb.velocity = Vector3.MoveTowards(rb.velocity, newAppVelocity, 5f);
+            // rb.velocity += newAppVelocity;
+            // AppliedVelocity = newAppVelocity;
+            // if (rb.velocity.magnitude < 3)
+            // {
                 rb.MovePosition(newPos);
-            }
-            var direction = newPos - tp;
-            transform.LookAt(tp + direction);
+            // }
+            // var direction = newPos - tp;
+            // transform.LookAt(tp + direction);
         }
 
+        #region Dash 
 
         private bool IsDashing = false;
 
@@ -141,7 +167,32 @@ namespace _3D
                 StartCoroutine(ExecDash());
             }
         }
+        
+        IEnumerator ExecDash()
+        {
+            IsDashing = true;
+            float currentDashTime = 0;
+            Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            rb.constraints = rb.constraints | RigidbodyConstraints.FreezePositionY;
+            var processedVector = ProcessInputVector(-axes).normalized;
+            var dir = (transform.position + processedVector);
+            DashParticles.transform.rotation = Quaternion.LookRotation(processedVector);
+            DashParticles.Play();
+            while (currentDashTime < DashTime)
+            {
+                
+                float portionOfDash = Time.fixedDeltaTime / DashTime;
+                currentDashTime += Time.fixedDeltaTime;
+                rb.MovePosition(transform.position +  processedVector * (DashDistance * portionOfDash) );
+                yield return new WaitForFixedUpdate();
+            }
+            DashCooldownCurrent = DashCooldown;
+            rb.constraints = rb.constraints ^ RigidbodyConstraints.FreezePositionY;
+            IsDashing = false;
+        }
+        #endregion
 
+        
         public void Attack()
         {
             var scaleFactor = new Vector2(Screen.width / Camera.main.targetTexture.width, Screen.height / Camera.main.targetTexture.height);
@@ -175,25 +226,6 @@ namespace _3D
                     }
                 }
             }
-        }
-
-        IEnumerator ExecDash()
-        {
-            IsDashing = true;
-            float currentDashTime = 0;
-            Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            rb.constraints = rb.constraints | RigidbodyConstraints.FreezePositionY;
-            var processedVector = ProcessInputVector(-axes).normalized;
-            while (currentDashTime < DashTime)
-            {
-                float portionOfDash = Time.deltaTime / DashTime;
-                currentDashTime += Time.deltaTime;
-                rb.MovePosition(transform.position +  processedVector * (DashDistance * portionOfDash) );
-                yield return null;
-            }
-            DashCooldownCurrent = DashCooldown;
-            rb.constraints = rb.constraints ^ RigidbodyConstraints.FreezePositionY;
-            IsDashing = false;
         }
     }
 }
