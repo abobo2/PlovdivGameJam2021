@@ -59,8 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcdec1620ac3e08439d8f07fb4792787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 100
-  Duration: 0.5
+  Speed: 50
+  Duration: 0.1
   Direction: {x: 0, y: 0, z: 0}
   ShotTime: 0
 --- !u!23 &63171612485765117
