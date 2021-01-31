@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChaseDistance: 15
-  MovementSpeed: 20
+  MovementSpeed: 50
   MinChaseDistance: 2
 --- !u!54 &4001430600743831399
 Rigidbody:
