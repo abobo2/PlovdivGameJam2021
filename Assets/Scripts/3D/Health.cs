@@ -49,12 +49,13 @@ public class Health : MonoBehaviour
             case HealthDieBehaviour.Respawn:
                 DieScreen.Inst.Show(() =>
                 {
-                    var ground = GetComponent<Grounding>();
-                    if (ground != null)
-                    {
-                        transform.position = ground.SafePosition;
-                        Value = StartValue;
-                    }
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                    // var ground = GetComponent<Grounding>();
+                    // if (ground != null)
+                    // {
+                    //     transform.position = ground.SafePosition;
+                    //     Value = StartValue;
+                    // }
                 });
                 break;
             case HealthDieBehaviour.Destroy:
