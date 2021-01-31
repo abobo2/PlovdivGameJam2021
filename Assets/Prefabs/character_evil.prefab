@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChaseDistance: 15
-  MovementSpeed: 30
+  MovementSpeed: 20
   MinChaseDistance: 2
 --- !u!54 &4001430600743831399
 Rigidbody:
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae05b2f9ec47734d859503157dcedb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartValue: 0
   Value: 1
   DieBehaviour: 1
 --- !u!1 &7663025713124521224
