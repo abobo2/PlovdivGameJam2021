@@ -96,6 +96,10 @@ namespace _3D
 
         public float DashDistance = 20;
 
+        public float DashCooldown;
+
+        public float DashCooldownCurrent;
+
         public float DashGracePeriod = 0.2f;
 
         public float DashGracePeriodCurrent = 0.2f;
@@ -103,6 +107,10 @@ namespace _3D
         public void Dash()
         {
             // cam.jit
+            if (DashCooldownCurrent > 0)
+            {
+                DashCooldownCurrent -= Time.deltaTime;
+            }
             Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             var grounding = gameObject.GetComponent<Grounding>();
             bool shouldDash = !IsDashing;
@@ -126,6 +134,7 @@ namespace _3D
             }
             if (axes.magnitude > Single.Epsilon &&  Input.GetButtonDown("Dash") && shouldDash)
             {
+                DashCooldownCurrent = 10000;
                 StartCoroutine(ExecDash());
             }
         }
@@ -168,6 +177,7 @@ namespace _3D
                 rb.MovePosition(transform.position +  processedVector * (DashDistance * portionOfDash) );
                 yield return null;
             }
+            DashCooldownCurrent = DashCooldown;
             rb.constraints = rb.constraints ^ RigidbodyConstraints.FreezePositionY;
             IsDashing = false;
         }
