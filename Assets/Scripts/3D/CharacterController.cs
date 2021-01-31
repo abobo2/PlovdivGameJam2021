@@ -150,7 +150,15 @@ namespace _3D
             if(enterPoint > Single.Epsilon)
             {
                 var hitPoint = mouseRay.GetPoint(enterPoint);
-                transform.LookAt(hitPoint); 
+                var lookRot = Quaternion.LookRotation(hitPoint - transform.position );
+                var yRot = lookRot.eulerAngles.y;
+                while (yRot < 0)
+                {
+                    yRot += 360;
+                }
+                var snap = yRot / 45;
+                var rounded = Mathf.Round(snap) * 45;
+                transform.rotation = Quaternion.Euler(transform.eulerAngles.x, rounded, transform.eulerAngles.z);
             }
            
             if (Input.GetButtonDown("Fire1"))
