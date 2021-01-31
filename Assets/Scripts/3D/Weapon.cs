@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
 
     public float Cooldown = 0.6f;
 
+    public float ProjectileSourceForwardAmount;
+
     public float CurrentCd = 0;
 
     public Projectile ProjectilePrefab;
@@ -20,7 +22,7 @@ public class Weapon : MonoBehaviour
         if (CurrentCd > 0) return;
         if(ProjectilePrefab == null) { throw new System.Exception("No projectile!"); }
         CurrentCd = Cooldown;
-        var go = Instantiate(ProjectilePrefab.gameObject, transform.position + transform.forward, transform.rotation);
+        var go = Instantiate(ProjectilePrefab.gameObject, transform.position + transform.forward * ProjectileSourceForwardAmount, transform.rotation);
         var proj = go.GetComponent<Projectile>();
         var wantedDir = transform.forward;
         wantedDir.y = 0;

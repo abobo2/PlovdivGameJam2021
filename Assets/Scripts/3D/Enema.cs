@@ -52,6 +52,7 @@ namespace _3D
         {
             if (other.transform.CompareTag("Player"))
             {
+                
                 // Kill the player
             }
         }
