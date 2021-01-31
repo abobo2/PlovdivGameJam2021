@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 public class Health : MonoBehaviour
 {
     public float StartValue;
+
+    public float InvulnerabilityDuration;
+    
+    public float InvulnerabilityDurationCurrent;
     
     public float Value = 1;
 
@@ -19,12 +23,15 @@ public class Health : MonoBehaviour
 
     internal void OnHit(float damage)
     {
+        if (InvulnerabilityDurationCurrent > 0) return;
+        InvulnerabilityDurationCurrent = InvulnerabilityDuration;
         Value -= damage;
         Screenshake.Inst.Shake();
     }
 
     private void Update()
     {
+        InvulnerabilityDurationCurrent -= Time.deltaTime;
         if (Value <= 0)
         {
             Die();

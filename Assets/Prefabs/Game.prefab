@@ -170,6 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartValue: 3
+  InvulnerabilityDuration: 1
+  InvulnerabilityDurationCurrent: 0
   Value: 3
   DieBehaviour: 0
 --- !u!1 &1418421225821597499

@@ -84,7 +84,10 @@ namespace _3D
             var offset = ProcessInputVector(-axes).normalized;
             var tp = transform.position;
             var newPos = tp + (offset * (MovementSpeed * Time.deltaTime));
-            rb.MovePosition(newPos);
+            if (rb.velocity.magnitude < 3)
+            {
+                rb.MovePosition(newPos);
+            }
             var direction = newPos - tp;
             transform.LookAt(tp + direction);
         }

@@ -14,6 +14,8 @@ namespace _3D
 
         public float MinChaseDistance = 2.0f;
 
+        public float PushbackMagnitude = 30;
+
         public Rigidbody rb => GetComponent<Rigidbody>();
         
         public void GetTarget()
@@ -39,7 +41,7 @@ namespace _3D
             var curPos2d = new Vector3(curPos.x, 0, curPos.z);
 
             var distance = Vector3.Distance(curPos2d, tarPos2d);
-            if ( distance < ChaseDistance && distance > MinChaseDistance &&rb.velocity.magnitude < 1) // prevent humping
+            if ( distance < ChaseDistance && distance > MinChaseDistance && rb.velocity.magnitude < 1) // prevent humping
             {
                 var dir = (tarPos2d - curPos2d).normalized;
                 var moveVec = dir * (MovementSpeed * Time.deltaTime);
@@ -52,8 +54,19 @@ namespace _3D
         {
             if (other.transform.CompareTag("Player"))
             {
-                
-                // Kill the player
+                var fPosThis = transform.position;
+                fPosThis.y = 0;
+                var fPosThat = other.transform.position;
+                fPosThat.y = 0;
+                var dir = (fPosThis - fPosThat).normalized;
+                Debug.Log(dir);
+                other.rigidbody.AddForce(-dir * PushbackMagnitude, ForceMode.Impulse);
+                rb.AddForce(dir * PushbackMagnitude, ForceMode.Impulse);
+                var hp = other.gameObject.GetComponent<Health>();
+                if (hp != null)
+                {
+                    hp.OnHit(1);
+                }
             }
         }
     }
