@@ -59,8 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcdec1620ac3e08439d8f07fb4792787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 50
-  Duration: 0.1
+  Speed: 100
+  Duration: 0.05
   Direction: {x: 0, y: 0, z: 0}
   ShotTime: 0
 --- !u!23 &63171612485765117
@@ -81,7 +81,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7188760151319342503, guid: 3c4a4681acf831248a6955a722d96890, type: 3}
+  - {fileID: 2100000, guid: f69481cb72f8a414fad5e576b09003e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
