@@ -72,6 +72,7 @@ namespace _3D
         {
             ResetInProgress = true;
             yield return new WaitForSeconds(ResetTime);
+            GetComponent<Health>().OnHit(1);
             transform.position = SafePosition + Vector3.up * 3.2f;
             rb.velocity = Vector3.zero;
             ResetInProgress = false;

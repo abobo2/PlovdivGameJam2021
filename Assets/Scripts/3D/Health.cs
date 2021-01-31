@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     internal void OnHit(float damage)
     {
         Value -= damage;
+        Screenshake.Inst.Shake();
     }
 
     private void Update()
@@ -36,6 +37,9 @@ public class Health : MonoBehaviour
                 break;
             case HealthDieBehaviour.Destroy:
                 Destroy(gameObject);
+                break;
+            case HealthDieBehaviour.ChangeScene:
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

@@ -4,6 +4,7 @@ using System.Collections;
 public class BasicCameraFollow : MonoBehaviour 
 {
 	public Transform followTarget;
+	
 	public float moveSpeed;
 	
 	void Update () 
