@@ -1,13 +1,21 @@
 ﻿using System;
 using _3D;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
+    public float StartValue;
+    
     public float Value = 1;
 
     public HealthDieBehaviour DieBehaviour;
+
+    private void Start()
+    {
+        StartValue = Value;
+    }
 
     internal void OnHit(float damage)
     {
@@ -28,12 +36,15 @@ public class Health : MonoBehaviour
         switch (DieBehaviour)
         {
             case HealthDieBehaviour.Respawn:
-                var ground = GetComponent<Grounding>();
-                if (ground != null)
+                DieScreen.Inst.Show(() =>
                 {
-                    transform.position = ground.SafePosition;
-                    Value = 1;
-                }
+                    var ground = GetComponent<Grounding>();
+                    if (ground != null)
+                    {
+                        transform.position = ground.SafePosition;
+                        Value = StartValue;
+                    }
+                });
                 break;
             case HealthDieBehaviour.Destroy:
                 Destroy(gameObject);
@@ -45,9 +56,7 @@ public class Health : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
-    
 }
-
 
 public enum HealthDieBehaviour
 {
