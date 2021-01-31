@@ -113,7 +113,7 @@ namespace _3D
             }
             Vector2 axes = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             var grounding = gameObject.GetComponent<Grounding>();
-            bool shouldDash = !IsDashing;
+            bool shouldDash = !IsDashing && DashCooldownCurrent <= 0;
             if(grounding != null)
             {
                 if (!grounding.IsGrounded)
@@ -163,14 +163,13 @@ namespace _3D
                 var snap = yRot / 45;
                 var rounded = Mathf.Round(snap) * 45;
                 transform.rotation = Quaternion.Euler(transform.eulerAngles.x, rounded, transform.eulerAngles.z);
-            }
-           
-            if (Input.GetButtonDown("Fire1"))
-            {
-                var weapon = this.GetComponent<Weapon>();
-                if (weapon != null)
+                if (Input.GetButtonDown("Fire1"))
                 {
-                    weapon.OnFire();
+                    var weapon = this.GetComponent<Weapon>();
+                    if (weapon != null)
+                    {
+                        weapon.OnFire( lookRot * Vector3.forward);
+                    }
                 }
             }
         }

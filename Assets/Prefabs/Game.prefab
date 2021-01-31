@@ -93,7 +93,7 @@ MonoBehaviour:
   MoveGracePeriodCurrent: 0.2
   DashTime: 0.1
   DashDistance: 15
-  DashCooldown: 0
+  DashCooldown: 1
   DashCooldownCurrent: 0
   DashGracePeriod: 0.2
   DashGracePeriodCurrent: 0.2
@@ -151,6 +151,7 @@ MonoBehaviour:
   Damage: 1
   Knockback: 3
   Cooldown: 0.1
+  ProjectileSourceForwardAmount: 0
   CurrentCd: 0
   ProjectilePrefab: {fileID: 63171612485764099, guid: d992e5e4ea4d7f844bffa862b62515da,
     type: 3}

@@ -17,14 +17,14 @@ public class Weapon : MonoBehaviour
 
     public string[] EnemyTags;
      
-    public void OnFire()
+    public void OnFire(Vector3 direction)
     {
         if (CurrentCd > 0) return;
         if(ProjectilePrefab == null) { throw new System.Exception("No projectile!"); }
         CurrentCd = Cooldown;
-        var go = Instantiate(ProjectilePrefab.gameObject, transform.position + transform.forward * ProjectileSourceForwardAmount, transform.rotation);
+        var go = Instantiate(ProjectilePrefab.gameObject, transform.position + direction * ProjectileSourceForwardAmount, Quaternion.LookRotation(direction, Vector3.up) );
         var proj = go.GetComponent<Projectile>();
-        var wantedDir = transform.forward;
+        var wantedDir = direction;
         wantedDir.y = 0;
         proj.Shoot(wantedDir);
         proj.CollisionAction = TriggerAction;
