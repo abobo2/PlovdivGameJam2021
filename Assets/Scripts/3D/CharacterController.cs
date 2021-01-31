@@ -141,7 +141,11 @@ namespace _3D
 
         public void Attack()
         {
-            var mouseRay = cam.ScreenPointToRay(Input.mousePosition);
+            var scaleFactor = new Vector2(Screen.width / Camera.main.targetTexture.width, Screen.height / Camera.main.targetTexture.height);
+            var scaledmPos = Input.mousePosition;
+            scaledmPos.x /= scaleFactor.x;
+            scaledmPos.y /= scaleFactor.y;
+            var mouseRay = cam.ScreenPointToRay(scaledmPos);
             Plane p = new Plane(Vector3.up, transform.position);
 
             float enterPoint;
