@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c11ca0144f86a446882dd750a2e0595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1
+  Damage: 0.5
   Knockback: 3
-  Cooldown: 0.1
+  Cooldown: 0.6
   ProjectileSourceForwardAmount: 0
   CurrentCd: 0
   ProjectilePrefab: {fileID: 63171612485764099, guid: d992e5e4ea4d7f844bffa862b62515da,
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae05b2f9ec47734d859503157dcedb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartValue: 0
+  StartValue: 3
   Value: 3
   DieBehaviour: 0
 --- !u!1 &1418421225821597499
@@ -6404,3 +6404,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTarget: {fileID: 733582654018666311}
   moveSpeed: 100
+  FollowDistance: 150
