@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 6821905690941744619}
   - component: {fileID: 4725757687106707654}
   - component: {fileID: 2854294039591921908}
+  - component: {fileID: 6702951318339905280}
+  - component: {fileID: 3224449025491011039}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -81,25 +83,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcad2f62db004f10857b8ba33492adac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  focus: {fileID: 0}
-  movementMask:
-    serializedVersion: 2
-    m_Bits: 0
-  interactionMask:
-    serializedVersion: 2
-    m_Bits: 0
-  DashParticles: {fileID: 0}
   cam: {fileID: 6801258407045431453}
-  MovementSpeed: 15
-  AppliedVelocity: {x: 0, y: 0, z: 0}
-  MoveGracePeriod: 0.2
-  MoveGracePeriodCurrent: 0.2
-  DashTime: 0.1
-  DashDistance: 15
-  DashCooldown: 1
-  DashCooldownCurrent: 0
+  Move: {fileID: 3224449025491011039}
+  Dash: {fileID: 6702951318339905280}
   DashGracePeriod: 0.2
   DashGracePeriodCurrent: 0.2
+  MoveGracePeriod: 0.2
+  MoveGracePeriodCurrent: 0.2
 --- !u!114 &63371646707293109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +167,35 @@ MonoBehaviour:
   InvulnerabilityDurationCurrent: 0
   Value: 3
   DieBehaviour: 0
+--- !u!114 &6702951318339905280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517303276141043781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf9acb7da8b4b23a3e75a48d320e085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DashParticles: {fileID: 8073385656131558081}
+  Duration: 0.1
+  Distance: 15
+  Cooldown: 0.6
+--- !u!114 &3224449025491011039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517303276141043781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fcee4c974e3481fa895d7e205a053ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeed: 15
 --- !u!1 &1418421225821597499
 GameObject:
   m_ObjectHideFlags: 0
@@ -5671,12 +5690,12 @@ MonoBehaviour:
     m_Bits: 1537
   stopNaNPropagation: 0
   finalBlitToCameraTarget: 0
-  antialiasingMode: 0
+  antialiasingMode: 3
   temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
+    jitterSpread: 0.263
+    sharpness: 1.17
+    stationaryBlending: 0.783
+    motionBlending: 0.76
   subpixelMorphologicalAntialiasing:
     quality: 2
   fastApproximateAntialiasing:
@@ -6410,6 +6429,7 @@ MonoBehaviour:
   followTarget: {fileID: 733582654018666311}
   moveSpeed: 100
   FollowDistance: 150
+  MovementStep: 0.02
 --- !u!1 &8634838116055259013
 GameObject:
   m_ObjectHideFlags: 0
@@ -6632,7 +6652,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.30495727, g: 0.63921684, b: 0.7264151, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -7275,7 +7295,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3000
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -7328,7 +7348,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 200
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -7381,7 +7401,7 @@ ParticleSystem:
     m_BurstCount: 0
     m_Bursts: []
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1

@@ -15,8 +15,9 @@ public class Projectile : MonoBehaviour
 
     public float ShotTime = 0;
 
-    public void Shoot(Vector3 direction)
+    public void Shoot(Vector3 direction, float weaponVelocityMagnitude)
     {
+        Speed += weaponVelocityMagnitude;
         Direction = direction;
         ShotTime = Time.time;
         isShot = true;

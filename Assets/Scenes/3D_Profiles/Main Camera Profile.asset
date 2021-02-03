@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6050e2d5de785ce4d931e4dbdbf2d755, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -53,7 +53,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.554
+    value: 0.302
   smoothness:
     overrideState: 0
     value: 0.2
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -188,10 +188,10 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: -15
+    value: 7
   tint:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 21
   colorFilter:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
@@ -200,7 +200,7 @@ MonoBehaviour:
     value: 44
   saturation:
     overrideState: 1
-    value: 15
+    value: -1
   brightness:
     overrideState: 0
     value: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
     value: 0.15
   contrast:
     overrideState: 1
-    value: 5
+    value: -24
   mixerRedOutRedIn:
     overrideState: 0
     value: 110
@@ -238,11 +238,11 @@ MonoBehaviour:
     overrideState: 0
     value: 100
   lift:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0.069504775}
+    overrideState: 1
+    value: {x: 0.8010529, y: 1, z: 0.9401152, w: -0.27270055}
   gamma:
     overrideState: 1
-    value: {x: 0.8918484, y: 0.9554396, z: 1, w: -0.26064295}
+    value: {x: 0.96320707, y: 0.9960665, z: 1, w: -0.26064295}
   gain:
     overrideState: 1
     value: {x: 1, y: 0.99225354, z: 0.88869, w: 1}

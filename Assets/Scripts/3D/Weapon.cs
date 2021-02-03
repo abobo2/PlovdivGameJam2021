@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
 
     public string[] EnemyTags;
      
-    public void OnFire(Vector3 direction)
+    public void OnFire(Vector3 direction, Vector3 currentMovement)
     {
         if (CurrentCd > 0) return;
         if(ProjectilePrefab == null) { throw new System.Exception("No projectile!"); }
@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour
         var proj = go.GetComponent<Projectile>();
         var wantedDir = direction;
         wantedDir.y = 0;
-        proj.Shoot(wantedDir);
+        proj.Shoot(wantedDir, currentMovement.magnitude);
         proj.CollisionAction = TriggerAction;
     }
 
