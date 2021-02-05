@@ -20694,6 +20694,16 @@ PrefabInstance:
       propertyPath: Damage
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6702951318339905280, guid: 18993548ecdc2454da87fc0b0d28bcf8,
+        type: 3}
+      propertyPath: Duration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6702951318339905280, guid: 18993548ecdc2454da87fc0b0d28bcf8,
+        type: 3}
+      propertyPath: Distance
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6801258407045431441, guid: 18993548ecdc2454da87fc0b0d28bcf8,
         type: 3}
       propertyPath: antialiasingMode

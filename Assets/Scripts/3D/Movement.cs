@@ -1,21 +1,17 @@
 ﻿using System;
 using _3D;
 using UnityEngine;
-using Util;
 
-public class Movement : MonoBehaviour
+
+public class Movement : MovementCapability
 {
     [Header("Movement Parameters")]
     public float MovementSpeed;
 
     private Vector3 direction;
+    public override MovementSource MovementType => MovementSource.Movement;
 
-    public void Start()
-    {
-        GetComponent<Rigidbody>().AddForceFunc(CalcMovementVelocity);
-    }
-    
-    public Vector3 CalcMovementVelocity()
+    public override Vector3 CalcMovement()
     {
         if (Mathf.Approximately(direction.magnitude, 0))
             return Vector3.zero;

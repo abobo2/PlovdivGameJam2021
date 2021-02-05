@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Util;
 
-public class Dash : MonoBehaviour
+public class Dash : MovementCapability
 {
     #region Configurable Parameters 
     public ParticleSystem DashParticles;
@@ -20,14 +20,9 @@ public class Dash : MonoBehaviour
     #endregion
 
     private Rigidbody rb => GetComponent<Rigidbody>();
+    public override MovementSource MovementType => durationCurrent > Duration/3*2 ? MovementSource.Dash : MovementSource.Movement;
 
-    public void Start()
-    {
-        durationCurrent = 0;
-        rb.AddForceFunc(CalcForce);
-    }
-
-    public Vector3 CalcForce()
+    public override Vector3 CalcMovement()
     {
         return durationCurrent > 0 ? direction * Distance * 1 / Duration * Time.fixedDeltaTime : Vector3.zero;
     }
@@ -42,7 +37,7 @@ public class Dash : MonoBehaviour
         DashParticles.Play();
     }
 
-    public void Update()
+    public void LateUpdate()
     {
         durationCurrent -= Time.deltaTime;
         cooldownCurrent -= Time.deltaTime;

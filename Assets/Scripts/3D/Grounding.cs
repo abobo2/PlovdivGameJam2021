@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Util;
 
 namespace _3D
 {
@@ -27,12 +28,52 @@ namespace _3D
         public void Start()
         {
             StartPosition = transform.position;
+            rb.AddVelocityCalculationStep(FallGrace());
         }
-        
-        public void Update()
+
+        public float FallGraceTime = 0.15f;
+        private float currentFallGraceTime = 0.15f;
+        private bool fallGraceFlag;
+        public ForceProcessorDelegate FallGrace()
+        {
+            return (input) =>
+            {
+                if (input.src == MovementSource.Inertia || input.src == MovementSource.Dash)
+                {
+                    return input.force;
+                }
+
+                if (Mathf.Approximately(0, input.force.magnitude))
+                {
+                    return Vector3.zero;
+                }
+                var offset = input.force;
+                var calc = PredictAtOffset(offset);
+                if (calc < currentFrameGroundCount)
+                {
+                    fallGraceFlag = true;
+                    if (currentFallGraceTime > 0)
+                    {
+                        return Vector3.zero;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Kek");
+                    currentFallGraceTime = FallGraceTime;
+                    fallGraceFlag = false;
+                }
+                return input.force;
+            };
+        }
+
+        public int MaxGroundCount = 0;
+
+
+        public int Predict(Vector3 position)
         {
             var bounds = transform.GetComponent<Collider>().bounds;
-            bool IsFullyGrounded = true;
+            MaxGroundCount = 0;
             int groundCount = 0;
             for (int i = -1; i <= 1; i++)
             {
@@ -41,9 +82,9 @@ namespace _3D
                     if (Mathf.Abs(i) + Mathf.Abs(j) == 2)
                     {
                         groundCount++;
-                        var bottom = new Vector3(0,bounds.extents.y,0);
+                        MaxGroundCount++;
                         var edgeOffset = new Vector3(bounds.extents.x * i, 0, bounds.extents.y * j);
-                        var worldSpaceEdge = transform.position + edgeOffset;// - bottom;
+                        var worldSpaceEdge = position + edgeOffset;// - bottom;
                         var ray = new Ray(worldSpaceEdge, -transform.up * 5.0f);
                         //Debug.DrawRay(ray.origin, ray.direction, Color.cyan, 0.5f);
                         if (!Physics.Raycast(ray))
@@ -55,9 +96,25 @@ namespace _3D
                     }
                 }
             }
+            return groundCount;
+        }
 
-            IsGrounded = groundCount > 0;
+        public int PredictAtOffset(Vector3 offsetFromPos)
+        {
+            return Predict(transform.position + offsetFromPos);
+        }
 
+        private int currentFrameGroundCount = 0;
+        public void Update()
+        {
+            if (fallGraceFlag)
+            {
+                currentFallGraceTime -= Time.deltaTime;
+            }
+            IsFullyGrounded = true;
+            currentFrameGroundCount = Predict(transform.position);
+            IsFullyGrounded = currentFrameGroundCount == MaxGroundCount;
+            IsGrounded = currentFrameGroundCount > 0;
             if (IsFullyGrounded)
             {
                 SafePosition = transform.position;

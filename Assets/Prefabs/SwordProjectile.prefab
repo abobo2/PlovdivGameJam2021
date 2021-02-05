@@ -63,6 +63,8 @@ MonoBehaviour:
   Duration: 0.08
   Direction: {x: 0, y: 0, z: 0}
   ShotTime: 0
+  MoveWithShooter: 1
+  RotateWithShooter: 0
 --- !u!23 &63171612485765117
 MeshRenderer:
   m_ObjectHideFlags: 0

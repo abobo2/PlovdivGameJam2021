@@ -1,4 +1,5 @@
 ﻿using System;
+using _3D;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -15,9 +16,25 @@ public class Projectile : MonoBehaviour
 
     public float ShotTime = 0;
 
-    public void Shoot(Vector3 direction, float weaponVelocityMagnitude)
+    public bool MoveWithShooter;
+    public bool RotateWithShooter;
+
+    public void Shoot(Vector3 direction, Transform shooter)
     {
-        Speed += weaponVelocityMagnitude;
+        if (MoveWithShooter || RotateWithShooter)
+        {
+            gameObject.AddComponent<TransformTracker>();
+            var tracker = gameObject.GetComponent<TransformTracker>();
+            tracker.SetTarget(shooter);
+            if (MoveWithShooter)
+            {
+                tracker.Move = true;
+            }
+            if (RotateWithShooter)
+            {
+                tracker.Rotate = true;
+            }
+        }
         Direction = direction;
         ShotTime = Time.time;
         isShot = true;

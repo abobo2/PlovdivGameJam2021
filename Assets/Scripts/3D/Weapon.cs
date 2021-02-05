@@ -1,5 +1,8 @@
 ﻿using System.Linq;
+using _3D;
+using Ludiq;
 using UnityEngine;
+using Util;
 
 public class Weapon : MonoBehaviour 
 {
@@ -17,7 +20,7 @@ public class Weapon : MonoBehaviour
 
     public string[] EnemyTags;
      
-    public void OnFire(Vector3 direction, Vector3 currentMovement)
+    public void OnFire(Vector3 direction, Transform shooter)
     {
         if (CurrentCd > 0) return;
         if(ProjectilePrefab == null) { throw new System.Exception("No projectile!"); }
@@ -26,7 +29,7 @@ public class Weapon : MonoBehaviour
         var proj = go.GetComponent<Projectile>();
         var wantedDir = direction;
         wantedDir.y = 0;
-        proj.Shoot(wantedDir, currentMovement.magnitude);
+        proj.Shoot(wantedDir, shooter);
         proj.CollisionAction = TriggerAction;
     }
 

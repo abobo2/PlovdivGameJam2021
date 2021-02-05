@@ -31,7 +31,8 @@ namespace _3D
         
         public void Update()
         {
-            ExecAttack();
+            TrackPointer();
+            ListenAttack();
         }
 
         public void FixedUpdate()
@@ -39,7 +40,6 @@ namespace _3D
             ListenMove();
             ListenDash();
         }
-
 
         #region Dash
         
@@ -75,10 +75,13 @@ namespace _3D
                     DashGracePeriodCurrent = DashGracePeriod;
                 }
             }
-            // TODO Dash in facing direction if axes are null.
-            if (axes.magnitude > Single.Epsilon && Input.GetButtonDown("Dash") && shouldDash)
+            if (Input.GetButtonDown("Dash") && shouldDash)
             {
                 var faceDir = -ProcessInputVector(axes);
+                if (Mathf.Approximately(axes.magnitude, 0))
+                {
+                    faceDir = transform.forward;
+                }
                 Dash.Invoke(faceDir);
             }
         }
@@ -87,6 +90,8 @@ namespace _3D
         public float MoveGracePeriod = 0.2f;
 
         public float MoveGracePeriodCurrent = 0.2f;
+
+        public float FallProtectionDistance = 2.0f;
         public void ListenMove()
         {
             bool shouldMove = true;
@@ -124,8 +129,9 @@ namespace _3D
                 Move.SetMovementDir(offset);
             }
         }
-        
-        public void ExecAttack()
+
+        private Quaternion lookRotation;
+        public void TrackPointer()
         {
             var scaleFactor = new Vector2(Screen.width / Camera.main.targetTexture.width, Screen.height / Camera.main.targetTexture.height);
             var scaledmPos = Input.mousePosition;
@@ -133,29 +139,33 @@ namespace _3D
             scaledmPos.y /= scaleFactor.y;
             var mouseRay = cam.ScreenPointToRay(scaledmPos);
             Plane p = new Plane(Vector3.up, transform.position);
-
             float enterPoint;
             p.Raycast(mouseRay, out enterPoint);
 
-            if(enterPoint > Single.Epsilon)
+            if (enterPoint > Single.Epsilon)
             {
                 var hitPoint = mouseRay.GetPoint(enterPoint);
-                var lookRot = Quaternion.LookRotation(hitPoint - transform.position );
-                var yRot = lookRot.eulerAngles.y;
+                lookRotation = Quaternion.LookRotation(hitPoint - transform.position);
+                var yRot = lookRotation.eulerAngles.y;
                 while (yRot < 0)
                 {
                     yRot += 360;
                 }
+
                 var snap = yRot / 45;
                 var rounded = Mathf.Round(snap) * 45;
                 transform.rotation = Quaternion.Euler(transform.eulerAngles.x, rounded, transform.eulerAngles.z);
-                if (Input.GetButtonDown("Fire1"))
+            }
+        }
+
+        public void ListenAttack()
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                var weapon = this.GetComponent<Weapon>();
+                if (weapon != null)
                 {
-                    var weapon = this.GetComponent<Weapon>();
-                    if (weapon != null)
-                    {
-                        weapon.OnFire( lookRot * Vector3.forward, rb.GetFullVelocity());
-                    }
+                    weapon.OnFire(lookRotation * Vector3.forward, transform);
                 }
             }
         }

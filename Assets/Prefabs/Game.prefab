@@ -90,6 +90,7 @@ MonoBehaviour:
   DashGracePeriodCurrent: 0.2
   MoveGracePeriod: 0.2
   MoveGracePeriodCurrent: 0.2
+  FallProtectionDistance: 2
 --- !u!114 &63371646707293109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +111,7 @@ MonoBehaviour:
   IsFullyGrounded: 0
   IsGrounded: 0
   ResetInProgress: 0
+  MaxGroundCount: 0
 --- !u!95 &6821905690941744619
 Animator:
   serializedVersion: 3
@@ -181,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DashParticles: {fileID: 8073385656131558081}
   Duration: 0.1
-  Distance: 15
+  Distance: 12
   Cooldown: 0.6
 --- !u!114 &3224449025491011039
 MonoBehaviour:
@@ -7348,7 +7350,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
